@@ -8,12 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		BEEBD6CB233155F9000C048B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEBD6CA233155F9000C048B /* AppDelegate.swift */; };
-		BEEBD6CD233155F9000C048B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEBD6CC233155F9000C048B /* ViewController.swift */; };
+		BEEBD6CD233155F9000C048B /* TodayOfferVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEBD6CC233155F9000C048B /* TodayOfferVC.swift */; };
 		BEEBD6D0233155F9000C048B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEEBD6CE233155F9000C048B /* Main.storyboard */; };
 		BEEBD6D2233155FA000C048B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEEBD6D1233155FA000C048B /* Assets.xcassets */; };
 		BEEBD6D5233155FA000C048B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEEBD6D3233155FA000C048B /* LaunchScreen.storyboard */; };
 		BEEBD6E0233155FA000C048B /* KulinerKuyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEBD6DF233155FA000C048B /* KulinerKuyTests.swift */; };
 		BEEBD6EB233155FB000C048B /* KulinerKuyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEBD6EA233155FB000C048B /* KulinerKuyUITests.swift */; };
+		BEEBD6FB23315615000C048B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEEBD6FA23315615000C048B /* CloudKit.framework */; };
+		BEEBD70123320EB0000C048B /* OfferTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEBD6FF23320EB0000C048B /* OfferTableViewCell.swift */; };
+		BEEBD70223320EB0000C048B /* OfferTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEEBD70023320EB0000C048B /* OfferTableViewCell.xib */; };
+		BEEBD70423321990000C048B /* OfferDataBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEBD70323321990000C048B /* OfferDataBaseModel.swift */; };
+		BEEBD70823334F7C000C048B /* CreateOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEBD70723334F7C000C048B /* CreateOfferViewController.swift */; };
+		BEEBD70A23338984000C048B /* MyOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEBD70923338984000C048B /* MyOfferViewController.swift */; };
+		BEEBD70C23339691000C048B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEEBD70B23339691000C048B /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +43,7 @@
 /* Begin PBXFileReference section */
 		BEEBD6C7233155F9000C048B /* KulinerKuy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KulinerKuy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEEBD6CA233155F9000C048B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BEEBD6CC233155F9000C048B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BEEBD6CC233155F9000C048B /* TodayOfferVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayOfferVC.swift; sourceTree = "<group>"; };
 		BEEBD6CF233155F9000C048B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BEEBD6D1233155FA000C048B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEEBD6D4233155FA000C048B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +54,14 @@
 		BEEBD6E6233155FB000C048B /* KulinerKuyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KulinerKuyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEEBD6EA233155FB000C048B /* KulinerKuyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KulinerKuyUITests.swift; sourceTree = "<group>"; };
 		BEEBD6EC233155FB000C048B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEEBD6F823315610000C048B /* KulinerKuy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KulinerKuy.entitlements; sourceTree = "<group>"; };
+		BEEBD6FA23315615000C048B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		BEEBD6FF23320EB0000C048B /* OfferTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferTableViewCell.swift; sourceTree = "<group>"; };
+		BEEBD70023320EB0000C048B /* OfferTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfferTableViewCell.xib; sourceTree = "<group>"; };
+		BEEBD70323321990000C048B /* OfferDataBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDataBaseModel.swift; sourceTree = "<group>"; };
+		BEEBD70723334F7C000C048B /* CreateOfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOfferViewController.swift; sourceTree = "<group>"; };
+		BEEBD70923338984000C048B /* MyOfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOfferViewController.swift; sourceTree = "<group>"; };
+		BEEBD70B23339691000C048B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEEBD70C23339691000C048B /* MapKit.framework in Frameworks */,
+				BEEBD6FB23315615000C048B /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +98,7 @@
 				BEEBD6DE233155FA000C048B /* KulinerKuyTests */,
 				BEEBD6E9233155FB000C048B /* KulinerKuyUITests */,
 				BEEBD6C8233155F9000C048B /* Products */,
+				BEEBD6F923315615000C048B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,10 +116,11 @@
 			isa = PBXGroup;
 			children = (
 				BEEBD6CA233155F9000C048B /* AppDelegate.swift */,
-				BEEBD6CC233155F9000C048B /* ViewController.swift */,
-				BEEBD6CE233155F9000C048B /* Main.storyboard */,
+				BEEBD6FC23320867000C048B /* Model */,
+				BEEBD6FD23320870000C048B /* View */,
+				BEEBD6FE23320873000C048B /* Controller */,
+				BEEBD6F823315610000C048B /* KulinerKuy.entitlements */,
 				BEEBD6D1233155FA000C048B /* Assets.xcassets */,
-				BEEBD6D3233155FA000C048B /* LaunchScreen.storyboard */,
 				BEEBD6D6233155FA000C048B /* Info.plist */,
 			);
 			path = KulinerKuy;
@@ -123,6 +142,60 @@
 				BEEBD6EC233155FB000C048B /* Info.plist */,
 			);
 			path = KulinerKuyUITests;
+			sourceTree = "<group>";
+		};
+		BEEBD6F923315615000C048B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BEEBD70B23339691000C048B /* MapKit.framework */,
+				BEEBD6FA23315615000C048B /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BEEBD6FC23320867000C048B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BEEBD70323321990000C048B /* OfferDataBaseModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BEEBD6FD23320870000C048B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BEEBD70523334DE5000C048B /* Custom Cell */,
+				BEEBD6D3233155FA000C048B /* LaunchScreen.storyboard */,
+				BEEBD6CE233155F9000C048B /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BEEBD6FE23320873000C048B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BEEBD70623334E02000C048B /* Cell Controller */,
+				BEEBD6CC233155F9000C048B /* TodayOfferVC.swift */,
+				BEEBD70923338984000C048B /* MyOfferViewController.swift */,
+				BEEBD70723334F7C000C048B /* CreateOfferViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BEEBD70523334DE5000C048B /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BEEBD70023320EB0000C048B /* OfferTableViewCell.xib */,
+			);
+			path = "Custom Cell";
+			sourceTree = "<group>";
+		};
+		BEEBD70623334E02000C048B /* Cell Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BEEBD6FF23320EB0000C048B /* OfferTableViewCell.swift */,
+			);
+			path = "Cell Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +266,20 @@
 				TargetAttributes = {
 					BEEBD6C6233155F9000C048B = {
 						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					BEEBD6DA233155FA000C048B = {
 						CreatedOnToolsVersion = 10.3;
@@ -229,6 +316,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEEBD70223320EB0000C048B /* OfferTableViewCell.xib in Resources */,
 				BEEBD6D5233155FA000C048B /* LaunchScreen.storyboard in Resources */,
 				BEEBD6D2233155FA000C048B /* Assets.xcassets in Resources */,
 				BEEBD6D0233155F9000C048B /* Main.storyboard in Resources */,
@@ -256,8 +344,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEEBD6CD233155F9000C048B /* ViewController.swift in Sources */,
+				BEEBD70123320EB0000C048B /* OfferTableViewCell.swift in Sources */,
+				BEEBD70A23338984000C048B /* MyOfferViewController.swift in Sources */,
+				BEEBD6CD233155F9000C048B /* TodayOfferVC.swift in Sources */,
 				BEEBD6CB233155F9000C048B /* AppDelegate.swift in Sources */,
+				BEEBD70823334F7C000C048B /* CreateOfferViewController.swift in Sources */,
+				BEEBD70423321990000C048B /* OfferDataBaseModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,9 +524,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KulinerKuy/KulinerKuy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YF2M6C4WM8;
 				INFOPLIST_FILE = KulinerKuy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,9 +544,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KulinerKuy/KulinerKuy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YF2M6C4WM8;
 				INFOPLIST_FILE = KulinerKuy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
