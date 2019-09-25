@@ -15,14 +15,8 @@ class OfferDataBaseModel{
     
     let privateDatabase = CKContainer.default().privateCloudDatabase
     let publicDatabase = CKContainer.default().publicCloudDatabase
-    
     let recordType = "Offering"
     
-    var delegate: OfferDatabaseModelDelegate?
-    
-    var publicRecordResult = [CKRecord]()
-    var privateRecordResult = [CKRecord]()
-    var userName = [CKRecord]()
     
     func saveData(offerTitle: String, price: String, people: Int, isPrivate: Bool, name: String ){
         let titleForKey = "title"
@@ -55,7 +49,7 @@ class OfferDataBaseModel{
     }
     
     
-    func fetchData(isPrivate : Bool){
+    func fetchData(isPrivate : Bool, completion: @escaping (_ record: [CKRecord]) -> Void){
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         let query = CKQuery(recordType: recordType, predicate: NSPredicate(value: true))
         query.sortDescriptors = [sortDescriptor]
@@ -64,8 +58,7 @@ class OfferDataBaseModel{
             privateDatabase.perform(query, inZoneWith: nil) { (recordArray, error) in
                 if error == nil{
                     guard let result = recordArray else { return }
-                    self.privateRecordResult = result
-                    self.delegate?.isDoneFetching(isDone: true)
+                    completion(result)
                 }else{
                     print("ERROR : FETCH PRIVATE DATA \(error!.localizedDescription)")
                 }
@@ -75,8 +68,7 @@ class OfferDataBaseModel{
             publicDatabase.perform(query, inZoneWith: nil) { (recordArray, error) in
                 if error == nil{
                     guard let result = recordArray else { return }
-                    self.publicRecordResult = result
-                    self.delegate?.isDoneFetching(isDone: true)
+                    completion(result)
                 }else{
                     print("ERROR : FETCH PUBLIC DATA \(error!.localizedDescription)")
                 }
@@ -85,7 +77,4 @@ class OfferDataBaseModel{
     }
 }
 
-protocol OfferDatabaseModelDelegate {
-    func isDoneFetching(isDone: Bool)
-}
 

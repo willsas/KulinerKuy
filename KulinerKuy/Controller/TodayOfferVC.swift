@@ -14,7 +14,6 @@ import CoreLocation
 class TodayOfferVC: UIViewController {
     
     @IBOutlet var yoursButtonOutlet: UIBarButtonItem!
-    
     @IBOutlet var tableView: UITableView!
     
     //Cloudkit
@@ -27,22 +26,16 @@ class TodayOfferVC: UIViewController {
         case loggedin, loggedout
     }
     var state = AuthenticationState.loggedout{
-        didSet{
-            print("SUCCESS: FACE ID IS SUCCESS BEING EXECUTED")
-        }
+        didSet{ print("SUCCESS: FACE ID IS SUCCESS BEING EXECUTED") }
     }
-    //corelocation
+    
+    //Corelocation
     let locationManager = CLLocationManager()
     var isPlacingImage = false
     
+    //popup
     var popup = UIView()
     var blackBackground = UIView()
-    
-    var newPopup: UIView {
-        let view = UIView()
-        return view
-    }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +43,6 @@ class TodayOfferVC: UIViewController {
         setupRefresherControl()
         fetchingData()
         setupLocalAuth()
-        DatabaseInstance.delegate = self
         setupCoreLocatoin()
         blackBackground = addBlackBackground()
         popup = addPopup()
@@ -58,8 +50,8 @@ class TodayOfferVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         fetchingData()
-        DatabaseInstance.delegate = self
         addImageFarFromAcademy()
+        fetchingData()
     }
     
     
@@ -72,23 +64,25 @@ class TodayOfferVC: UIViewController {
         self.tableView.dataSource = self
         self.tableView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9490196078, blue: 0.937254902, alpha: 1)
     }
-    
     func setupRefresherControl(){
         let refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(fetchingData), for: .valueChanged)
         self.tableView.refreshControl = refresher
     }
-    
     @objc func fetchingData(){
-        DatabaseInstance.fetchData(isPrivate: false)
+        DatabaseInstance.fetchData(isPrivate: false) { (arrayOfCKRecord) in
+            self.record = arrayOfCKRecord
+            DispatchQueue.main.async {
+                self.tableView.refreshControl?.endRefreshing()
+                self.tableView.reloadData()
+            }
+        }
     }
-    
     func setupLocalAuth(){
         context.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
         state = .loggedout
     }
-    
     func biometricAuth(){
         if state == .loggedin{
             state = .loggedout
@@ -108,11 +102,7 @@ class TodayOfferVC: UIViewController {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                                 self.didBiometricsSuccessedAlert()
                                 //animate UIVIEW
-                                self.blackBackground.isHidden = false
-                                self.tableView.isUserInteractionEnabled = false
-                                UIView.animate(withDuration: 0.2) {
-                                    self.popup.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.maxY / 2, width: self.view.frame.width, height: self.view.frame.height / 2)
-                                }
+                                self.popupAppear()
                             })
                         }
                     }else{
@@ -169,8 +159,8 @@ class TodayOfferVC: UIViewController {
             case .immediate:
                 self.view.backgroundColor = UIColor.white
                 self.closeToAcademy()
-            default:
-                print("SOMETHING WRONG WITH \(#function): \(fatalError())")
+            default: break
+               // print("SOMETHING WRONG WITH \(#function): \(fatalError())")
         }
     }
     
@@ -204,8 +194,6 @@ class TodayOfferVC: UIViewController {
         }
     }
     
-    
-    
     func addPopup() -> UIView{
         let view = UIView()
         view.backgroundColor = .orange
@@ -224,11 +212,17 @@ class TodayOfferVC: UIViewController {
         backgroundView.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y - 45, width: self.view.frame.width, height: self.view.frame.height)
         backgroundView.isHidden = true
         self.navigationController?.navigationBar.addSubview(backgroundView)
-        //backgroundView.frame.size.height = (self.navigationController?.view.bounds.height)!
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissPopup))
         self.view.addGestureRecognizer(tapGesture)
         return backgroundView
+    }
+    
+    func popupAppear(){
+        self.blackBackground.isHidden = false
+        self.tableView.isUserInteractionEnabled = false
+        UIView.animate(withDuration: 0.2) {
+            self.popup.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.maxY / 2, width: self.view.frame.width, height: self.view.frame.height / 2)
+        }
     }
     
     @objc func dismissPopup(){
@@ -239,19 +233,6 @@ class TodayOfferVC: UIViewController {
         }
         self.tableView.isUserInteractionEnabled = true
     }
-    
-    func didtapFinishFetch(isFinish: Bool){
-        print(#function)
-        if isFinish == true{
-            record = DatabaseInstance.publicRecordResult
-            DispatchQueue.main.async {
-                self.tableView.refreshControl?.endRefreshing()
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
-    
 }
 
 
@@ -261,19 +242,6 @@ class TodayOfferVC: UIViewController {
 extension TodayOfferVC: OfferTableViewCellDelegate{
     func kuyButtonTapped() {
         biometricAuth()
-    }
-}
-
-extension TodayOfferVC: OfferDatabaseModelDelegate{
-    func isDoneFetching(isDone: Bool) {
-        if isDone == true{
-
-            record = DatabaseInstance.publicRecordResult
-            DispatchQueue.main.async {
-                self.tableView.refreshControl?.endRefreshing()
-                self.tableView.reloadData()
-            }
-        }
     }
 }
 

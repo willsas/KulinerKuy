@@ -13,13 +13,12 @@ class MyOfferViewController: UIViewController {
     
     var record = [CKRecord]()
     
-    let db = OfferDataBaseModel.instance
+    let databaseInstance = OfferDataBaseModel.instance
     
     @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        db.delegate = self
         setupTableView()
         setupRefresherControl()
         navigationController?.navigationBar.backItem?.backBarButtonItem?.tintColor = #colorLiteral(red: 0.4039215686, green: 0.6509803922, blue: 0.3490196078, alpha: 1)
@@ -27,7 +26,7 @@ class MyOfferViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         fetchingData()
-        //db.delegate = self
+        //set to false when finish fetching
         tableView.isHidden = true
     }
     
@@ -45,16 +44,13 @@ class MyOfferViewController: UIViewController {
     }
     
     @objc func fetchingData(){
-        db.fetchData(isPrivate: true)
-    }
-    
-    func didtapFinish(isFinish:Bool){
-        
-        if isFinish{
-            record = db.privateRecordResult
-            self.tableView.refreshControl?.endRefreshing()
-            self.tableView.reloadData()
-            
+        databaseInstance.fetchData(isPrivate: true) { (arrayOfRecord) in
+            self.record = arrayOfRecord
+            DispatchQueue.main.async {
+                self.tableView.isHidden = false
+                self.tableView.refreshControl?.endRefreshing()
+                self.tableView.reloadData()
+            }
         }
     }
 }
@@ -79,18 +75,5 @@ extension MyOfferViewController: UITableViewDelegate, UITableViewDataSource{
         cell.userNameOutlet.text = record[indexPath.row].value(forKey: "name") as? String
 
         return cell
-    }
-}
-
-extension MyOfferViewController: OfferDatabaseModelDelegate{
-    func isDoneFetching(isDone: Bool) {
-        if isDone == true{
-            record = db.privateRecordResult
-            DispatchQueue.main.async {
-                self.tableView.refreshControl?.endRefreshing()
-                self.tableView.isHidden = false
-                self.tableView.reloadData()
-            }
-        }
     }
 }
