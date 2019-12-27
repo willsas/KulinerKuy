@@ -36,6 +36,11 @@ class TodayOfferVC: UIViewController {
     //popup
     var popup = UIView()
     var blackBackground = UIView()
+    lazy var dismissLayerButton: UIButton = {
+        let btn = UIButton()
+        btn.addTarget(self, action: #selector(dismissPopup), for: .touchUpInside)
+        return btn
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +62,7 @@ class TodayOfferVC: UIViewController {
     
     
     
-    // MARK: - Setup Func
+    // MARK: - Function
     
     func setupTableView(){
         self.tableView.delegate = self
@@ -102,6 +107,7 @@ class TodayOfferVC: UIViewController {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                                 self.didBiometricsSuccessedAlert()
                                 //animate UIVIEW
+                                
                                 self.popupAppear()
                             })
                         }
@@ -207,13 +213,17 @@ class TodayOfferVC: UIViewController {
     
     func addBlackBackground() -> UIView {
         let backgroundView = UIView()
-        backgroundView.backgroundColor = .black
+        backgroundView.backgroundColor = .blue
         backgroundView.alpha = 0.5
         backgroundView.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y - 45, width: self.view.frame.width, height: self.view.frame.height)
         backgroundView.isHidden = true
         self.navigationController?.navigationBar.addSubview(backgroundView)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissPopup))
-        self.view.addGestureRecognizer(tapGesture)
+        backgroundView.addGestureRecognizer(tapGesture)
+        //self.tableView.addGestureRecognizer(tapGesture)
+
+        //self.view.addGestureRecognizer(tapGesture)
+        //self.popup.gestureRecognizers?.removeAll()
         return backgroundView
     }
     
